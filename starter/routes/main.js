@@ -11,5 +11,5 @@ router.route('/login').post(Login)
 
 
 
-module.exports = router   // exports the router
+module.exports = router   // export router
     

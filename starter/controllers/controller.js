@@ -6,8 +6,7 @@ const jwt = require('jsonwebtoken');
 
 
 const Login = async (req, resp) => {
-const {username, password} = req.body
-
+const {username, password} = req.body    
 
    //you can use mongoose as validation from the model
   //Joi package 
@@ -15,8 +14,7 @@ const {username, password} = req.body
   if (!username || !password) {
      throw new   BadRequestError('please provide email and  password')   
   }
-  
-  const id = new Date().getDate()
+    const id = new Date().getDate()
  
     //inject web token from .env  using  jwt(jsonwebToken)
 const token =  jwt.sign({id, username},process.env.JWT_SECRET,{
@@ -28,7 +26,6 @@ const token =  jwt.sign({id, username},process.env.JWT_SECRET,{
 
 const Dashboard = async(req, resp) => {
   
-  //get the second value from the token
 
   const luckyNumber = Math.floor(Math.random() *100)
     resp.status(200).json({msg: `Hello, ${req.user.username}`, 
