@@ -1,15 +1,12 @@
 const express = require('express');
 const { Login, Dashboard } = require('../controllers/controller');
 const authenticationMiddleware = require('../middleware/auth');
-require = require('express-async-errors');
-//invoke  router
+require('express-async-errors');
+
 const router = express.Router()
 
-// const dashboard = require('../controllers/main');
-
-
  
-router.route('/dashboard').get(authenticationMiddleware, Dashboard)
+router.route('/dashboard').get(authenticationMiddleware, Dashboard) // use auth middleware only for authenticated  users
 router.route('/login').post(Login)
 
 

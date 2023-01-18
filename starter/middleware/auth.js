@@ -10,19 +10,19 @@
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer')) {
-      throw new UnauthenticatedError('No Token ')
+      throw new UnauthenticatedError('No Token')
     }      
     //get the second value from the token
     
      const token = authHeader.split(' ')[1]
 
   try {
-    //verify  webToken
+    //verify  webToken to ensure it  matches the authenticated user
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
         
     //destructures  the  id  and  username  from the  decoded payload
     const {id, username} = decoded  // destructire  this  object and  get two values from
-   // const luckyNumber = Math.floor(Math.random() *100)
+   
     req.user = {id, username}
     next()
   //  resp.status(200).json({msg: `Hello, ${decoded.payload}`, secret: `Here  is  your auhtorized data, your luck number is ${luckyNumber}` })
